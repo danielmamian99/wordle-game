@@ -9,7 +9,7 @@ export const WordRow = ({ positionRow }: { positionRow:number }) => {
   const { currentRow, gameStart, currentWord } = useAppSelector(
     (state) => state.game
   );
-  const { mode } = useAppSelector((state) => state.session);
+  const { mode } = useAppSelector((state) => state.ui);
 
   const noCheck = (mode === "Light" ? "text-black bg-[#939b9f]/30" : "bg-[#939b9f]/20");
   const correctLetter = mode === "Light" ? "bg-[#66A060]" : "bg-[#6AAA64]";

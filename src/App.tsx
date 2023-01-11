@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 
 import Swal from "sweetalert2";
-import { Header } from "./components/Header";
 
-import { WordRow } from "./components/WordRow";
+import { StatsModal, Header, WordRow } from "./components";
 import { useAppDispatch, useAppSelector, useTimer } from "./hooks";
-
 import { clearErrorMessage, getWords, startGame } from "./store/slices/game";
-import { setMode } from "./store/slices/session";
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +17,7 @@ export const App = () => {
     currentWord,
   } = useAppSelector(state => state.game);
 
-  const { mode } = useAppSelector(state => state.session)
+  const { mode } = useAppSelector(state => state.ui)
 
   useEffect(() => {
     dispatch(getWords());
@@ -32,7 +29,7 @@ export const App = () => {
         toast: true,
         position: "center",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 1500,
       });
 
       Toast.fire({
@@ -46,21 +43,17 @@ export const App = () => {
   const initGame = () => {
     dispatch(startGame());
   };
-
-  const changeMode = () => {
-    dispatch(setMode());
-  };
   useTimer();
   return (
-    <div className={'w-screen h-screen py-10 ' +  (mode === 'Dark' ? `bg-[#262B3C] text-white` : '')}>
+    <div className={'h-screen py-10 ' +  (mode === 'Dark' ? `bg-[#262B3C] text-white` : '')}>
       <Header/>
       <div className="flex flex-col">
         <button onClick={initGame}> Iniciar juego </button>
-        <button onClick={changeMode}> Mode </button>
       </div>
       {inGameWords.map((word, index) => (
         <WordRow key={index} positionRow={index} />
       ))}
+      <StatsModal/>
     </div>
   );
 };

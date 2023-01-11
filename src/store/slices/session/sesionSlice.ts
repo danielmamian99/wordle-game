@@ -6,18 +6,16 @@ const isFirtsTime = !(
 
 export interface sessionState {
   isFirtsTime: boolean;
-  mode: "Dark" | "Light";
   plays: number;
-  wins: number;
   time: string;
+  wins: number;
 }
 
 const initialState: sessionState = {
   isFirtsTime: isFirtsTime,
-  mode: "Light",
   plays: 0,
+  time: '05:00',
   wins: 0,
-  time: '05:00'
 };
 
 export const sessionSlice = createSlice({
@@ -28,9 +26,6 @@ export const sessionSlice = createSlice({
       state.isFirtsTime = false;
       localStorage.setItem("Firts-Time-In-The-Game", "false");
     },
-    setMode: (state) => {
-      state.mode = state.mode === 'Dark' ? 'Light' : 'Dark';
-    },
     setPlays: (state) => {
       state.plays += 1;
     },
@@ -40,9 +35,10 @@ export const sessionSlice = createSlice({
     setTime: (state, {payload}) => {
       const seconds = payload.seconds < 10 ? `0${payload.seconds}` : payload.seconds;
       state.time = `0${payload.minutes}:${seconds}`;
-    }
+    },
+
   },
 });
 
-export const { setFirtsTime, setMode, setPlays, setWins, setTime } =
+export const { setFirtsTime, setPlays, setWins, setTime } =
   sessionSlice.actions;

@@ -1,8 +1,7 @@
 // import { words } from "./words";
 
 // export const wordsApi = () => {
-//     const data = words.split('\n');
-//     return data;
+//     return words;
 // }
 
 export const wordsApi = async() => {

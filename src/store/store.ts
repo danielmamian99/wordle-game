@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { sessionSlice } from './slices/session'
 import { gameSlice } from './slices/game'
+import { uiSlice } from './slices/ui'
 
 export const store = configureStore({
   reducer: {
     session: sessionSlice.reducer,
-    game: gameSlice.reducer
+    game: gameSlice.reducer,
+    ui: uiSlice.reducer
   },
 })
 

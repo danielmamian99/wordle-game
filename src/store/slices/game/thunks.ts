@@ -3,7 +3,7 @@ import { AppDispatch } from "../../store";
 import { wordsApi } from "../../../api/wordsApi";
 
 
-export const getWords = ( page = 0 ) => {
+export const getWords = () => {
     return async ( dispatch: AppDispatch ) => {
 
         dispatch( startLoadingWords() );
