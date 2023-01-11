@@ -10,7 +10,9 @@ export const getWords = ( page = 0 ) => {
 
         const data = await wordsApi();
         const words = data.split('\n');
-
-        dispatch( setWords({words}) );
+        const wordsWhitoutAccent = words.map((word) => {
+            return word.normalize("NFD").replace(/\p{Diacritic}/gu, "")
+        })
+        dispatch( setWords({words:wordsWhitoutAccent}) );
     }
 }

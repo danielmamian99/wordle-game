@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
 
 const isFirtsTime = !(
   localStorage.getItem("Firts-Time-In-The-Game") === "false"
@@ -10,6 +9,7 @@ export interface sessionState {
   mode: "Dark" | "Light";
   plays: number;
   wins: number;
+  time: string;
 }
 
 const initialState: sessionState = {
@@ -17,6 +17,7 @@ const initialState: sessionState = {
   mode: "Light",
   plays: 0,
   wins: 0,
+  time: '05:00'
 };
 
 export const sessionSlice = createSlice({
@@ -27,8 +28,8 @@ export const sessionSlice = createSlice({
       state.isFirtsTime = false;
       localStorage.setItem("Firts-Time-In-The-Game", "false");
     },
-    setMode: (state, { payload }) => {
-      state.mode = payload;
+    setMode: (state) => {
+      state.mode = state.mode === 'Dark' ? 'Light' : 'Dark';
     },
     setPlays: (state) => {
       state.plays += 1;
@@ -36,8 +37,12 @@ export const sessionSlice = createSlice({
     setWins: (state) => {
       state.wins += 1;
     },
+    setTime: (state, {payload}) => {
+      const seconds = payload.seconds < 10 ? `0${payload.seconds}` : payload.seconds;
+      state.time = `0${payload.minutes}:${seconds}`;
+    }
   },
 });
 
-export const { setFirtsTime, setMode, setPlays, setWins } =
+export const { setFirtsTime, setMode, setPlays, setWins, setTime } =
   sessionSlice.actions;
