@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 import { StatsModal, Header, WordRow } from "./components";
+import { HowToPlayModal } from "./components/HowToPlayModal";
 import { useAppDispatch, useAppSelector, useTimer } from "./hooks";
 import { clearErrorMessage, getWords, startGame } from "./store/slices/game";
 
@@ -54,6 +55,7 @@ export const App = () => {
         <WordRow key={index} positionRow={index} />
       ))}
       <StatsModal/>
+      <HowToPlayModal/>
     </div>
   );
 };
