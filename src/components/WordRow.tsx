@@ -75,12 +75,12 @@ export const WordRow = ({ positionRow }: { positionRow:number }) => {
     };
   });
   return (
-    <div className="flex justify-center text-white">
+    <div className="flex justify-center text-white font-bold">
       {styles.map((letterStyle, index) => (
         <div
           key={index}
           className={
-            `flex justify-center items-center uppercase text-2xl font-bold rounded m-1 w-14 h-14 ` +
+            `flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 ` +
             `${letterStyle}`
           }
         >

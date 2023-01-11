@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import Swal from "sweetalert2";
+import { Header } from "./components/Header";
 
 import { WordRow } from "./components/WordRow";
 import { useAppDispatch, useAppSelector, useTimer } from "./hooks";
@@ -51,11 +52,8 @@ export const App = () => {
   };
   useTimer();
   return (
-    <div className={'w-screen h-screen ' +  (mode === 'Dark' ? `bg-[#262B3C]` : '')}>
-      {currentRow > 4 && !isWon && (
-        <p>PERDISTEEE, la palabra era: {currentWord}</p>
-      )}
-      {isWon && <p>GANASTE, la palabra era: {currentWord}</p>}
+    <div className={'w-screen h-screen py-10 ' +  (mode === 'Dark' ? `bg-[#262B3C] text-white` : '')}>
+      <Header/>
       <div className="flex flex-col">
         <button onClick={initGame}> Iniciar juego </button>
         <button onClick={changeMode}> Mode </button>
