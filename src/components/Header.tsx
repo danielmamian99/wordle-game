@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { onOpenHowToPlayModal, onOpenStatsModal, setMode } from '../store/slices/ui';
  

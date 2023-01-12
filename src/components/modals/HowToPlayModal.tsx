@@ -23,7 +23,7 @@ const customStyles: Modal.Styles = {
   },
 };
 
-Modal.setAppElement("#root");
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 export const HowToPlayModal = () => {
   const dispatch = useAppDispatch();

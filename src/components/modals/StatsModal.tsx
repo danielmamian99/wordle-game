@@ -25,7 +25,7 @@ const customStyles: Modal.Styles = {
   },
 };
 
-Modal.setAppElement("#root");
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 export const StatsModal = () => {
   const dispatch = useAppDispatch();
