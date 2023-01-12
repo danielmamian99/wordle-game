@@ -1,8 +1,9 @@
 import Modal from "react-modal";
 
-import { useAppSelector, useAppDispatch } from "../hooks/redux";
-import { onCloseHowToPlayModal } from "../store/slices/ui";
-import { Button } from "./generals";
+import { useAppSelector, useAppDispatch } from "../../hooks";
+import { onStartGame } from "../../store/slices/game";
+import { onCloseHowToPlayModal } from "../../store/slices/ui";
+import { Button } from "../";
 
 const customStyles: Modal.Styles = {
   overlay: {},
@@ -27,6 +28,7 @@ Modal.setAppElement("#root");
 export const HowToPlayModal = () => {
   const dispatch = useAppDispatch();
   const { isHowToPlayModalOpen, mode } = useAppSelector(state => state.ui);
+  const { gameStart } = useAppSelector(state => state.game);
 
   customStyles.content!.borderColor = mode === "Dark" ? "#939B9F" : "#000000";
   customStyles.content!.backgroundColor =
@@ -50,6 +52,9 @@ export const HowToPlayModal = () => {
   const sing = ["C", "A", "N", "T", "O"];
 
   const onCloseModal = () => {
+    if(!gameStart){
+      dispatch(onStartGame());
+    }
     dispatch(onCloseHowToPlayModal());
   };
 

@@ -1,8 +1,11 @@
+import { useState } from "react";
 import Modal from "react-modal";
+import { useTimer } from "../../hooks";
 
-import { useAppSelector, useAppDispatch } from "../hooks/redux";
-import { onCloseStatsModal } from "../store/slices/ui";
-import { Button } from "./generals";
+import { useAppSelector, useAppDispatch } from "../../hooks";
+import { onStartGame } from "../../store/slices/game";
+import { onCloseStatsModal } from "../../store/slices/ui";
+import { Button } from "../";
 
 const customStyles: Modal.Styles = {
   overlay: {},
@@ -25,13 +28,28 @@ const customStyles: Modal.Styles = {
 Modal.setAppElement("#root");
 
 export const StatsModal = () => {
-
   const dispatch = useAppDispatch();
   const { isStatsModalOpen, mode } = useAppSelector((state) => state.ui);
-  const { plays, wins, time } = useAppSelector((state) => state.session);
-  const { hasLose, currentWord } = useAppSelector((state) => state.game);
+  const { plays, wins } = useAppSelector((state) => state.session);
+  const { hasLose, currentWord, gameStart } = useAppSelector(
+    (state) => state.game
+  );
+  const startMinutes = 2;
+  const startSeconds = 0;
+  const [minutes, setMinutes] = useState(startMinutes);
+  const [seconds, setSeconds] = useState(startSeconds);
+  
+  const calculateSeconds = seconds < 10 ? `0${seconds}` : seconds;
+  const time = `0${minutes}:${calculateSeconds}`;
+
+  useTimer({ minutes, seconds, setMinutes, setSeconds });
 
   const onCloseModal = () => {
+    if (!gameStart) {
+      dispatch(onStartGame());
+      setMinutes(startMinutes);
+      setSeconds(startSeconds);
+    }
     dispatch(onCloseStatsModal());
   };
 
@@ -40,6 +58,7 @@ export const StatsModal = () => {
     mode === "Dark" ? "#262B3C" : "rgba(243, 243, 243, 0.89)";
   customStyles.overlay!.backgroundColor =
     mode === "Dark" ? "rgba(38, 43, 60, 0.89)" : "rgba(243, 243, 243, 0.89)";
+  customStyles.content!.height = hasLose ? "60%" : "50%";
 
   return (
     <Modal
@@ -61,16 +80,20 @@ export const StatsModal = () => {
             <p> Victorias </p>
           </article>
         </section>
-        {hasLose && <p>La palabra era <span className="font-bold">{currentWord}</span></p>}
-        <article className="flex flex-col justify-center items-center mt-10">
+
+        {hasLose && (
+          <article className="flex justify-center mt-8">
+            <p>
+              La palabra era <span className="font-bold">{currentWord}</span>
+            </p>
+          </article>
+        )}
+
+        <article className="flex flex-col justify-center items-center mt-6">
           <p className=""> SIGUIENTE PALABRA </p>
           <p className="font-bold"> {time} </p>
         </article>
-        <Button
-            className="mt-4"
-            handleClick={onCloseModal}
-            label="Aceptar"
-        />
+        <Button className="mt-4" handleClick={onCloseModal} label="Aceptar" />
       </section>
     </Modal>
   );

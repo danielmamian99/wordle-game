@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface sessionState {
   plays: number;
-  time: string;
+  timeIsOver: boolean;
   wins: number;
 }
 
 const initialState: sessionState = {
   plays: 0,
-  time: '05:00',
+  timeIsOver: false,
   wins: 0,
 };
 
@@ -22,14 +22,14 @@ export const sessionSlice = createSlice({
     setWins: (state) => {
       state.wins += 1;
     },
-    setTime: (state, {payload}) => {
-      console.log('payload.seconds >>>', payload.seconds);
-      console.log('payload.minutes >>>', payload.minutes);
-      const seconds = payload.seconds < 10 ? `0${payload.seconds}` : payload.seconds;
-      state.time = `0${payload.minutes}:${seconds}`;
+    startTime: (state) => {
+      state.timeIsOver = false;
     },
+    overTime: (state) => {
+      state.timeIsOver = true;
+    }
   },
 });
 
-export const { setPlays, setWins, setTime } =
+export const { setPlays, setWins, startTime, overTime } =
   sessionSlice.actions;

@@ -10,10 +10,12 @@ const isFirtsTime = !(
   localStorage.getItem("Firts-Time-In-The-Game") === "false"
 );
 
+const mode = localStorage.getItem("wordleGame-mode") === 'Dark' ? 'Dark' : 'Light';
+
 const initialState: UiState = {
   isStatsModalOpen: false,
   isHowToPlayModalOpen: isFirtsTime,
-  mode: "Light",
+  mode,
 };
 
 export const uiSlice = createSlice({
@@ -33,9 +35,16 @@ export const uiSlice = createSlice({
       state.isHowToPlayModalOpen = false;
     },
     setMode: (state) => {
-        state.mode = state.mode === 'Dark' ? 'Light' : 'Dark';
-      },
+      state.mode = state.mode === "Dark" ? "Light" : "Dark";
+      localStorage.setItem("wordleGame-mode", state.mode);
+    },
   },
 });
 
-export const { onOpenStatsModal, onCloseStatsModal, onOpenHowToPlayModal, onCloseHowToPlayModal, setMode } = uiSlice.actions;
+export const {
+  onOpenStatsModal,
+  onCloseStatsModal,
+  onOpenHowToPlayModal,
+  onCloseHowToPlayModal,
+  setMode,
+} = uiSlice.actions;

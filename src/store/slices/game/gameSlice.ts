@@ -54,7 +54,7 @@ export const gameSlice = createSlice({
       state.currentRow = 0;
       state.errorMessage = undefined;
     },
-    setCurrentRow: (state, { payload }) => {
+    setCurrentRow: (state) => {
       state.currentRow += 1;
     },
     isValidWord: (state, { payload }) => {
@@ -77,12 +77,6 @@ export const gameSlice = createSlice({
       state.currentRow += 1;
       state.hasLose = true;
     },
-    setWin: (state, {payload}) => {
-      state.hasWin = payload
-    },
-    setLose: (state, {payload}) => {
-      state.hasLose = payload
-    },
     clearErrorMessage: (state) => {
       state.errorMessage = undefined;
     },
@@ -90,13 +84,11 @@ export const gameSlice = createSlice({
 });
 
 export const {
-  startLoadingWords,
+  clearErrorMessage,
+  isValidWord,
+  loseGame,
+  setCurrentRow,
   setWords,
   startGame,
-  setCurrentRow,
-  isValidWord,
-  clearErrorMessage,
-  loseGame,
-  setWin,
-  setLose,
+  startLoadingWords,
 } = gameSlice.actions;

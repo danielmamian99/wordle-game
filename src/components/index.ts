@@ -1,3 +1,4 @@
-export * from './StatsModal';
 export * from './WordRow';
 export * from './Header';
+export * from './modals'
+export * from './generals'

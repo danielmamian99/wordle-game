@@ -1,39 +1,38 @@
-import { useState, useEffect } from "react";
-import { setTime } from "../store/slices/session";
-import { useAppDispatch, useAppSelector } from "./redux";
+import { useEffect } from "react";
+import { overTime } from "../store/slices/session";
+import { useAppSelector, useAppDispatch } from './redux';
 
-export const useTimer = () => {
-  const dispatch = useAppDispatch();
+interface Props {
+  minutes: number;
+  seconds: number
+  setMinutes: (minutes:number) => void;
+  setSeconds: (seconds:number) => void;
+}
+
+export const useTimer = ({minutes, seconds, setMinutes, setSeconds} : Props) => {
+  const dispatch =  useAppDispatch();
   const { gameStart } = useAppSelector((state) => state.game);
-  const startingMinutes = 5;
-  const startingSeconds = 0;
-  const [minutes, setMinutes] = useState(startingMinutes);
-  const [seconds, setSeconds] = useState(startingSeconds);
+
   useEffect(() => {
     let sampleInterval = setInterval(() => {
-      if (gameStart && minutes) {
+      if (gameStart) {
         if (seconds > 0) {
           setSeconds(seconds - 1);
         }
         if (seconds === 0) {
           if (minutes === 0) {
+            dispatch(overTime());
             clearInterval(sampleInterval);
           } else {
             setMinutes(minutes - 1);
             setSeconds(59);
           }
         }
-        dispatch(
-          setTime({
-            minutes,
-            seconds,
-          })
-        );
-      }else{
-        setMinutes(5);
-        setSeconds(0);
       }
     }, 1000);
+    if(!gameStart){
+      clearInterval(sampleInterval);
+    }
     return () => {
       clearInterval(sampleInterval);
     };
