@@ -17,22 +17,25 @@ export const App = () => {
   return (
     <div
       className={
-        "h-screen py-10 " + (mode === "Dark" ? `bg-[#262B3C] text-white` : "")
+        "flex justify-center h-screen overflow-scroll " +
+        (mode === "Dark" ? `bg-[#262B3C] text-white` : "")
       }
     >
-      <Header />
-      {!isLoading && (
-        <>
-          <section className="mt-10">
-            {inGameWords.map((word, index) => (
-              <WordRow key={index} positionRow={index} />
-            ))}
-          </section>
-          <KeyBoard />
-        </>
-      )}
-      <StatsModal />
-      <HowToPlayModal />
+      <div className="py-10">
+        <Header />
+        {!isLoading && (
+          <>
+            <section className="mt-10">
+              {inGameWords.map((word, index) => (
+                <WordRow key={index} positionRow={index} />
+              ))}
+            </section>
+            <KeyBoard />
+          </>
+        )}
+        <StatsModal />
+        <HowToPlayModal />
+      </div>
     </div>
   );
 };
