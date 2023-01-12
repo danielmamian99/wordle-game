@@ -16,7 +16,8 @@ export const App = () => {
     currentRow,
     isWon,
     currentWord,
-    gameStart
+    gameStart,
+    allWords
   } = useAppSelector((state) => state.game);
 
   const { mode, isHowToPlayModalOpen, isStatsModalOpen } = useAppSelector((state) => state.ui);
@@ -26,10 +27,10 @@ export const App = () => {
   }, []);
 
   useEffect(() => {
-    if(!isHowToPlayModalOpen && !isStatsModalOpen && !gameStart){
+    if(!isHowToPlayModalOpen && !isStatsModalOpen && !gameStart && allWords.length > 0){
       dispatch(startGame());
     }
-  }, [isHowToPlayModalOpen, isStatsModalOpen, gameStart])
+  }, [isHowToPlayModalOpen, isStatsModalOpen, gameStart, allWords.length])
 
   useEffect(() => {
     if (errorMessage) {
@@ -49,7 +50,7 @@ export const App = () => {
   }, [errorMessage]);
 
   useTimer();
-  
+
   return (
     <div
       className={
