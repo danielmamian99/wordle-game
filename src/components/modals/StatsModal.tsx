@@ -34,7 +34,7 @@ export const StatsModal = () => {
   const { hasLose, currentWord, gameStart } = useAppSelector(
     (state) => state.game
   );
-  const startMinutes = 2;
+  const startMinutes = 5;
   const startSeconds = 0;
   const [minutes, setMinutes] = useState(startMinutes);
   const [seconds, setSeconds] = useState(startSeconds);

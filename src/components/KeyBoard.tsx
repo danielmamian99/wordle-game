@@ -24,10 +24,7 @@ export const KeyBoard = () => {
     resultValidWords.length,
     resultInCorrectWords.length,
   ]);
-
-  console.log("correctWords >>>", correctWords);
-  console.log("inCorrectWords >>>", inCorrectWords);
-  console.log("validWords >>>", validWords);
+  
   const generalStyle =
     "flex justify-center items-center uppercase text-lg rounded m-1 h-10 ";
 

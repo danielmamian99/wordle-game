@@ -42,7 +42,7 @@ export const gameSlice = createSlice({
       state.gameStart = true;
       state.hasLose = false;
       while (
-        state.currentWord.length !== 5 ||
+        state.currentWord === '' ||
         state.usedWords.find((word) => word === state.currentWord)
       ) {
         state.currentWord =

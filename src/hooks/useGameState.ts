@@ -59,7 +59,7 @@ export const useGameState = () => {
   }, [hasLose, hasWin]);
 
   useEffect(() => {
-    if ((currentRow > 4 || timeIsOver)  && !hasLose) {
+    if ((currentRow > 4 || timeIsOver)  && !hasLose && !hasWin) {
       dispatch(loseGame());
     }
   }, [currentRow, timeIsOver]);
