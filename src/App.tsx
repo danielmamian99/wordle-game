@@ -1,3 +1,4 @@
+import { MoonLoader } from "react-spinners";
 import {
   HowToPlayModal,
   StatsModal,
@@ -22,9 +23,9 @@ export const App = () => {
       }
     >
       <div className="py-10">
-        <Header />
-        {!isLoading && (
+        {!isLoading ? (
           <>
+            <Header />
             <section className="mt-10">
               {inGameWords.map((word, index) => (
                 <WordRow key={index} positionRow={index} />
@@ -32,6 +33,13 @@ export const App = () => {
             </section>
             <KeyBoard />
           </>
+        ) : (
+          <div className="flex w-[28rem] items-center justify-center h-full">
+            <MoonLoader
+              color={mode === "Dark" ? "#ffffff" : "#000000"}
+              size={100}
+            />
+          </div>
         )}
         <StatsModal />
         <HowToPlayModal />
