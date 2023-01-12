@@ -7,7 +7,7 @@ import { clearErrorMessage, getWords, loseGame, onStartGame } from "../store/sli
 import { setPlays, setWins } from "../store/slices/session";
 import { onOpenStatsModal } from "../store/slices/ui";
 
-export const useGameState = () => {
+export const useGame = () => {
   const dispatch = useAppDispatch();
   const { hasLose, hasWin, currentRow, allWords, gameStart , errorMessage } = useAppSelector((state) => state.game);
   const { timeIsOver } = useAppSelector((state) => state.session);

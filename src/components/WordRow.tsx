@@ -4,15 +4,14 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { equalsArrays } from "../helpers";
 import { isValidWord } from "../store/slices/game";
 
-export const WordRow = ({ positionRow }: { positionRow: number }) => {
+export const WordRow = ({ positionRow }: { positionRow:number }) => {
   const dispatch = useAppDispatch();
   const { currentRow, gameStart, currentWord } = useAppSelector(
     (state) => state.game
   );
   const { mode } = useAppSelector((state) => state.ui);
 
-  const noCheck =
-    mode === "Light" ? "text-black bg-[#939b9f]/30" : "bg-[#939b9f]/20";
+  const noCheck = (mode === "Light" ? "text-black bg-[#939b9f]/30" : "bg-[#939b9f]/20");
   const correctLetter = mode === "Light" ? "bg-[#66A060]" : "bg-[#6AAA64]";
 
   const [word, setWord] = useState<string[]>([]);

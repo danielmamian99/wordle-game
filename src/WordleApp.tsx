@@ -8,13 +8,13 @@ import {
   KeyBoard,
 } from "./components";
 
-import { useAppSelector, useGameState } from "./hooks";
+import { useAppSelector, useGame } from "./hooks";
 
 export const WordleApp = () => {
   const { isLoading, inGameWords } = useAppSelector((state) => state.game);
   const { mode } = useAppSelector((state) => state.ui);
 
-  useGameState();
+  useGame();
 
   return (
     <div
