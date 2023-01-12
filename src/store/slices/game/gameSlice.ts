@@ -17,7 +17,7 @@ const initialState: gameState = {
   allWords: [],
   usedWords: [],
   isLoading: false,
-  currentWord: "",
+  currentWord: '',
   gameStart: false,
   inGameWords: [[], [], [], [], []],
   currentRow: 0,
@@ -38,7 +38,11 @@ export const gameSlice = createSlice({
     },
     startGame: (state) => {
       state.gameStart = true;
-      while (state.currentWord.length !== 5 || state.usedWords.find((word) => word === state.currentWord)) {
+      if(state.currentWord === ''){
+        state.currentWord =
+          state.allWords[Math.floor(Math.random() * state.allWords.length)];
+      }
+      while ( state.currentWord.length !== 5 || state.usedWords.find((word) => word === state.currentWord) ) {
         state.currentWord =
           state.allWords[Math.floor(Math.random() * state.allWords.length)];
       }

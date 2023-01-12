@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 
 import { useAppSelector, useAppDispatch } from "../hooks/redux";
+import { startGame } from "../store/slices/game";
 import { onCloseHowToPlayModal } from "../store/slices/ui";
 import { Button } from "./generals";
 
@@ -26,13 +27,28 @@ Modal.setAppElement("#root");
 
 export const HowToPlayModal = () => {
   const dispatch = useAppDispatch();
-  const { isHowToPlayModalOpen, mode } = useAppSelector((state) => state.ui);
+  const { isHowToPlayModalOpen, mode } = useAppSelector(state => state.ui);
 
   customStyles.content!.borderColor = mode === "Dark" ? "#939B9F" : "#000000";
   customStyles.content!.backgroundColor =
     mode === "Dark" ? "#262B3C" : "rgba(243, 243, 243, 0.89)";
   customStyles.overlay!.backgroundColor =
     mode === "Dark" ? "rgba(38, 43, 60, 0.89)" : "rgba(243, 243, 243, 0.89)";
+
+  const rowStyle =
+    "flex justify-center font-bold my-2 " +
+    (mode === "Dark" ? "" : "text-black");
+
+    const letterGeneralStyle = 'flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 ';
+
+  const letterStyleMode =
+  letterGeneralStyle +
+    "border " +
+    (mode === "Dark" ? " border-white" : "border-black");
+
+  const cats = ["G", "A", "T", "O", "S"];
+  const vocal = ["V", "O", "C", "A", "L"];
+  const sing = ["C", "A", "N", "T", "O"];
 
   const onCloseModal = () => {
     dispatch(onCloseHowToPlayModal());
@@ -45,8 +61,8 @@ export const HowToPlayModal = () => {
       style={customStyles}
     >
       <section className={mode === "Dark" ? "text-white bg-[#262B3C]" : ""}>
-        <article className="flex flex-col items-center">
-          <p className="text-2xl font-bold">Cómo jugar</p>
+        <article className="flex flex-col">
+          <p className="text-2xl font-bold self-center">Cómo jugar</p>
           <br />
           <p>Adivina la palabra oculta en cinco intentos.</p>
           <br />
@@ -60,69 +76,58 @@ export const HowToPlayModal = () => {
           <br />
         </article>
         <p className="text-xl font-bold"> Ejemplos </p>
-        <div className="flex justify-center text-black font-bold my-2">
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 bg-[#6AAA64]">
-            G
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            A
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            T
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            O
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            S
-          </div>
+        <div className={rowStyle}>
+          {cats.map((letter, index) =>
+            index === 0 ? (
+              <div key={index} className={letterGeneralStyle + 'bg-[#6AAA64]'}>
+                {letter}
+              </div>
+            ) : (
+              <div key={index} className={letterStyleMode}>{letter}</div>
+            )
+          )}
         </div>
-        <p>La letra <span className="font-bold">G</span> está en la palabra y en la posición correcta.</p>
-        <div className="flex justify-center text-black font-bold my-2">
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            V
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            O
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 bg-[#CEB02C]">
-            C
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            A
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            L
-          </div>
+        <p>
+          La letra <span className="font-bold">G</span> está en la palabra y en
+          la posición correcta.
+        </p>
+        <div className={rowStyle}>
+          {vocal.map((letter, index) =>
+            index === 2 ? (
+              <div key={index} className={letterGeneralStyle + 'bg-[#CEB02C]'}>
+                {letter}
+              </div>
+            ) : (
+              <div key={index} className={letterStyleMode}>{letter}</div>
+            )
+          )}
         </div>
-        <p>La letra <span className="font-bold">C</span> está en la palabra pero en la posición incorrecta.</p>
-        <div className="flex justify-center text-black font-bold my-2">
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            C
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            A
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            N
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 border border-black">
-            T
-          </div>
-          <div className="flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 bg-[#939B9F]">
-            O
-          </div>
+        <p>
+          La letra <span className="font-bold">C</span> está en la palabra pero
+          en la posición incorrecta.
+        </p>
+        <div className={rowStyle}>
+          {sing.map((letter, index) =>
+            index === 4 ? (
+              <div key={index} className={letterGeneralStyle + 'bg-[#939B9F]'}>
+                {letter}
+              </div>
+            ) : (
+              <div key={index} className={letterStyleMode}>{letter}</div>
+            )
+          )}
         </div>
-        <p>La letra <span className="font-bold">O</span> no está en la palabra.</p>
-        <p className="mt-10">Puede haber letras repetidas. Las pistas son independientes para cada letra.</p>
+        <p>
+          La letra <span className="font-bold">O</span> no está en la palabra.
+        </p>
+        <p className="mt-10">
+          Puede haber letras repetidas. Las pistas son independientes para cada
+          letra.
+        </p>
         <article className="flex justify-center mt-10">
-            <p>¡Una palabra nueva cada 5 minutos!</p>
+          <p>¡Una palabra nueva cada 5 minutos!</p>
         </article>
-        <Button
-            className="mt-10"
-            handleClick={onCloseModal}
-            label="!JUGAR¡"
-        />
+        <Button className="mt-10" handleClick={onCloseModal} label="!JUGAR¡" />
       </section>
     </Modal>
   );

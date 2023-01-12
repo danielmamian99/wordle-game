@@ -16,13 +16,20 @@ export const App = () => {
     currentRow,
     isWon,
     currentWord,
-  } = useAppSelector(state => state.game);
+    gameStart
+  } = useAppSelector((state) => state.game);
 
-  const { mode } = useAppSelector(state => state.ui)
+  const { mode, isHowToPlayModalOpen, isStatsModalOpen } = useAppSelector((state) => state.ui);
 
   useEffect(() => {
     dispatch(getWords());
   }, []);
+
+  useEffect(() => {
+    if(!isHowToPlayModalOpen && !isStatsModalOpen && !gameStart){
+      dispatch(startGame());
+    }
+  }, [isHowToPlayModalOpen, isStatsModalOpen, gameStart])
 
   useEffect(() => {
     if (errorMessage) {
@@ -41,21 +48,22 @@ export const App = () => {
     }
   }, [errorMessage]);
 
-  const initGame = () => {
-    dispatch(startGame());
-  };
   useTimer();
+  
   return (
-    <div className={'h-screen py-10 ' +  (mode === 'Dark' ? `bg-[#262B3C] text-white` : '')}>
-      <Header/>
-      <div className="flex flex-col">
-        <button onClick={initGame}> Iniciar juego </button>
-      </div>
-      {inGameWords.map((word, index) => (
-        <WordRow key={index} positionRow={index} />
-      ))}
-      <StatsModal/>
-      <HowToPlayModal/>
+    <div
+      className={
+        "h-screen py-10 " + (mode === "Dark" ? `bg-[#262B3C] text-white` : "")
+      }
+    >
+      <Header />
+      <section className="mt-10">
+        {inGameWords.map((word, index) => (
+          <WordRow key={index} positionRow={index} />
+        ))}
+      </section>
+      <StatsModal />
+      <HowToPlayModal />
     </div>
   );
 };
