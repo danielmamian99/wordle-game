@@ -123,7 +123,7 @@ export const KeyBoard = () => {
               {index < 8 ? (
                 letter
               ) : (
-                <img src={`images/keyBoard/${mode}/backSpace.svg`}></img>
+                <img alt="Borrar caracter wordle game" src={`images/keyBoard/${mode}/backSpace.svg`}></img>
               )}
             </button>
           ))}
