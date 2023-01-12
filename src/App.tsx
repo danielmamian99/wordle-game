@@ -1,9 +1,14 @@
-import { HowToPlayModal, StatsModal, Header, WordRow } from "./components";
+import {
+  HowToPlayModal,
+  StatsModal,
+  Header,
+  WordRow,
+  KeyBoard,
+} from "./components";
 
 import { useAppSelector, useGameState } from "./hooks";
 
 export const App = () => {
-  
   const { isLoading, inGameWords } = useAppSelector((state) => state.game);
   const { mode } = useAppSelector((state) => state.ui);
 
@@ -17,11 +22,14 @@ export const App = () => {
     >
       <Header />
       {!isLoading && (
-        <section className="mt-10">
-          {inGameWords.map((word, index) => (
-            <WordRow key={index} positionRow={index} />
-          ))}
-        </section>
+        <>
+          <section className="mt-10">
+            {inGameWords.map((word, index) => (
+              <WordRow key={index} positionRow={index} />
+            ))}
+          </section>
+          <KeyBoard />
+        </>
       )}
       <StatsModal />
       <HowToPlayModal />
