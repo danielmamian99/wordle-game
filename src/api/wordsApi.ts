@@ -1,12 +1,12 @@
-// import { words } from "./words";
-
-// export const wordsApi = () => {
-//     return words;
-// }
+import { words } from "./words";
 
 export const wordsApi = async() => {
-    const response = await fetch("src/api/words.txt");
-    const data = await response.text();
-    return data;
+    return words;
 }
+
+// export const wordsApi = async() => {
+//     const response = await fetch("src/api/words.txt");
+//     const data = await response.text();
+//     return data;
+// }
 
