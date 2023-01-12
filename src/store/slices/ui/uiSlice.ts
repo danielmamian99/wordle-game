@@ -6,9 +6,13 @@ export interface UiState {
   mode: "Dark" | "Light";
 }
 
+const isFirtsTime = !(
+  localStorage.getItem("Firts-Time-In-The-Game") === "false"
+);
+
 const initialState: UiState = {
   isStatsModalOpen: false,
-  isHowToPlayModalOpen: false,
+  isHowToPlayModalOpen: isFirtsTime,
   mode: "Light",
 };
 

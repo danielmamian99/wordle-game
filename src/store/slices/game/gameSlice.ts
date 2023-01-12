@@ -10,19 +10,21 @@ export interface gameState {
   inGameWords: string[][];
   currentRow: number;
   errorMessage?: string;
-  isWon: boolean;
+  hasWin: boolean;
+  hasLose: boolean;
 }
 
 const initialState: gameState = {
   allWords: [],
   usedWords: [],
   isLoading: false,
-  currentWord: '',
+  currentWord: "",
   gameStart: false,
   inGameWords: [[], [], [], [], []],
   currentRow: 0,
   errorMessage: undefined,
-  isWon: false,
+  hasWin: false,
+  hasLose: false,
 };
 
 export const gameSlice = createSlice({
@@ -38,13 +40,17 @@ export const gameSlice = createSlice({
     },
     startGame: (state) => {
       state.gameStart = true;
-      while ( state.currentWord.length !== 5 || state.usedWords.find((word) => word === state.currentWord) ) {
+      state.hasLose = false;
+      while (
+        state.currentWord.length !== 5 ||
+        state.usedWords.find((word) => word === state.currentWord)
+      ) {
         state.currentWord =
           state.allWords[Math.floor(Math.random() * state.allWords.length)];
       }
       state.usedWords.push(state.currentWord);
       state.inGameWords = [[], [], [], [], []];
-      state.isWon = false;
+      state.hasWin = false;
       state.currentRow = 0;
       state.errorMessage = undefined;
     },
@@ -54,22 +60,28 @@ export const gameSlice = createSlice({
     isValidWord: (state, { payload }) => {
       const isValid = state.allWords.find((word) => word === payload.join(""));
       if (state.currentWord === payload.join("") && isValid) {
-        state.isWon = true;
+        state.hasWin = true;
         state.gameStart = false;
         state.inGameWords[state.currentRow] = isValid.split("");
         state.currentRow += 1;
-      }else if (isValid && state.currentRow === 4) {
-        state.isWon = false;
-        state.gameStart = false;
-        state.inGameWords[state.currentRow] = isValid.split("");
-        state.currentRow += 1;
-      }
-      else if (isValid) {
+      } else if (isValid) {
         state.inGameWords[state.currentRow] = isValid.split("");
         state.currentRow += 1;
       } else {
         state.errorMessage = "Palabra no valida";
       }
+    },
+    loseGame: (state) => {
+      state.hasWin = false;
+      state.gameStart = false;
+      state.currentRow += 1;
+      state.hasLose = true;
+    },
+    setWin: (state, {payload}) => {
+      state.hasWin = payload
+    },
+    setLose: (state, {payload}) => {
+      state.hasLose = payload
     },
     clearErrorMessage: (state) => {
       state.errorMessage = undefined;
@@ -83,5 +95,8 @@ export const {
   startGame,
   setCurrentRow,
   isValidWord,
-  clearErrorMessage
+  clearErrorMessage,
+  loseGame,
+  setWin,
+  setLose,
 } = gameSlice.actions;

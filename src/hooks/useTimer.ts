@@ -11,7 +11,7 @@ export const useTimer = () => {
   const [seconds, setSeconds] = useState(startingSeconds);
   useEffect(() => {
     let sampleInterval = setInterval(() => {
-      if (gameStart) {
+      if (gameStart && minutes) {
         if (seconds > 0) {
           setSeconds(seconds - 1);
         }

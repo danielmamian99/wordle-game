@@ -29,6 +29,7 @@ export const StatsModal = () => {
   const dispatch = useAppDispatch();
   const { isStatsModalOpen, mode } = useAppSelector((state) => state.ui);
   const { plays, wins, time } = useAppSelector((state) => state.session);
+  const { hasLose, currentWord } = useAppSelector((state) => state.game);
 
   const onCloseModal = () => {
     dispatch(onCloseStatsModal());
@@ -60,6 +61,7 @@ export const StatsModal = () => {
             <p> Victorias </p>
           </article>
         </section>
+        {hasLose && <p>La palabra era <span className="font-bold">{currentWord}</span></p>}
         <article className="flex flex-col justify-center items-center mt-10">
           <p className=""> SIGUIENTE PALABRA </p>
           <p className="font-bold"> {time} </p>

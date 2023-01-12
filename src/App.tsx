@@ -4,8 +4,8 @@ import Swal from "sweetalert2";
 
 import { StatsModal, Header, WordRow } from "./components";
 import { HowToPlayModal } from "./components/HowToPlayModal";
-import { useAppDispatch, useAppSelector, useTimer } from "./hooks";
-import { clearErrorMessage, getWords, startGame } from "./store/slices/game";
+import { useAppDispatch, useAppSelector, useGameState, useTimer } from "./hooks";
+import { clearErrorMessage } from "./store/slices/game";
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -13,24 +13,9 @@ export const App = () => {
     isLoading,
     inGameWords,
     errorMessage,
-    currentRow,
-    isWon,
-    currentWord,
-    gameStart,
-    allWords
   } = useAppSelector((state) => state.game);
 
-  const { mode, isHowToPlayModalOpen, isStatsModalOpen } = useAppSelector((state) => state.ui);
-
-  useEffect(() => {
-    dispatch(getWords());
-  }, []);
-
-  useEffect(() => {
-    if(!isHowToPlayModalOpen && !isStatsModalOpen && !gameStart && allWords.length > 0){
-      dispatch(startGame());
-    }
-  }, [isHowToPlayModalOpen, isStatsModalOpen, gameStart, allWords.length])
+  const { mode } = useAppSelector((state) => state.ui);
 
   useEffect(() => {
     if (errorMessage) {
@@ -50,6 +35,7 @@ export const App = () => {
   }, [errorMessage]);
 
   useTimer();
+  useGameState();
 
   return (
     <div

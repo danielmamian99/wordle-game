@@ -1,7 +1,6 @@
 import Modal from "react-modal";
 
 import { useAppSelector, useAppDispatch } from "../hooks/redux";
-import { startGame } from "../store/slices/game";
 import { onCloseHowToPlayModal } from "../store/slices/ui";
 import { Button } from "./generals";
 
