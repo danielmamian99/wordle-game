@@ -38,9 +38,6 @@ export const StatsModal = () => {
   const startSeconds = 0;
   const [minutes, setMinutes] = useState(startMinutes);
   const [seconds, setSeconds] = useState(startSeconds);
-  
-  const calculateSeconds = seconds < 10 ? `0${seconds}` : seconds;
-  const time = `0${minutes}:${calculateSeconds}`;
 
   useTimer({ minutes, seconds, setMinutes, setSeconds });
 
@@ -52,6 +49,9 @@ export const StatsModal = () => {
     }
     dispatch(onCloseStatsModal());
   };
+
+  const calculateSeconds = seconds < 10 ? `0${seconds}` : seconds;
+  const time = `0${minutes}:${calculateSeconds}`;
 
   customStyles.content!.borderColor = mode === "Dark" ? "#939B9F" : "#000000";
   customStyles.content!.backgroundColor =

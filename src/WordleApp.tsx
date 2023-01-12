@@ -1,4 +1,5 @@
 import { MoonLoader } from "react-spinners";
+
 import {
   HowToPlayModal,
   StatsModal,
@@ -9,7 +10,7 @@ import {
 
 import { useAppSelector, useGameState } from "./hooks";
 
-export const App = () => {
+export const WordleApp = () => {
   const { isLoading, inGameWords } = useAppSelector((state) => state.game);
   const { mode } = useAppSelector((state) => state.ui);
 

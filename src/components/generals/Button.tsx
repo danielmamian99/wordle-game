@@ -1,3 +1,4 @@
+import { memo } from "react";
 
 interface props {
     handleClick: ()=>void;
@@ -5,7 +6,7 @@ interface props {
     className?: string;
 }
 
-export const Button = ({className='', handleClick, label} : props) => {
+export const Button = memo(({className='', handleClick, label} : props) => {
   return (
     <div className={'flex justify-center ' + className}>
         <button
@@ -17,4 +18,9 @@ export const Button = ({className='', handleClick, label} : props) => {
         </button>
   </div>
   )
-}
+}, (prevProps, nextProps)=>{
+  if(prevProps.className !== nextProps.className || prevProps.label !== nextProps.label){
+    return false;
+  }
+  return true;
+})

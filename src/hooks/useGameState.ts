@@ -45,7 +45,7 @@ export const useGameState = () => {
     if(allWords.length > 0 && !isFirtsTime && !gameStart){
         dispatch(onStartGame());
     }
-  }, [allWords.length])
+  }, [allWords.length]);
   
 
   useEffect(() => {
