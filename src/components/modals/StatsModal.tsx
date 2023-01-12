@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Modal from "react-modal";
 import { useTimer } from "../../hooks";
 
@@ -34,21 +34,21 @@ export const StatsModal = () => {
   const { hasLose, currentWord, gameStart } = useAppSelector(
     (state) => state.game
   );
-  const startMinutes = 5;
-  const startSeconds = 0;
+  const startMinutes = 0;
+  const startSeconds = 10;
   const [minutes, setMinutes] = useState(startMinutes);
   const [seconds, setSeconds] = useState(startSeconds);
 
   useTimer({ minutes, seconds, setMinutes, setSeconds });
 
-  const onCloseModal = () => {
+  const onCloseModal = useCallback(() => {
     if (!gameStart) {
       dispatch(onStartGame());
       setMinutes(startMinutes);
       setSeconds(startSeconds);
     }
     dispatch(onCloseStatsModal());
-  };
+  }, [gameStart]);
 
   const calculateSeconds = seconds < 10 ? `0${seconds}` : seconds;
   const time = `0${minutes}:${calculateSeconds}`;

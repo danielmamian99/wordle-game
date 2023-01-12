@@ -18,9 +18,4 @@ export const Button = memo(({className='', handleClick, label} : props) => {
         </button>
   </div>
   )
-}, (prevProps, nextProps)=>{
-  if(prevProps.className !== nextProps.className || prevProps.label !== nextProps.label){
-    return false;
-  }
-  return true;
 })
