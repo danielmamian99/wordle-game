@@ -46,10 +46,10 @@ export const KeyBoard = () => {
     event.currentTarget.blur();
   };
   return (
-    <section className="flex justify-center mt-10 w-11/12 sm:w-auto">
+    <section className="flex justify-center mx-0 mt-10 w-full sm:w-auto">
       <div
         className={
-          "flex flex-col rounded-lg p-6 h-44 justify-center text-white w-11/12 sm:w-auto " +
+          "flex flex-col rounded-lg p-2 sm:p-6 justify-center text-white w-full sm:w-auto " +
           (mode === "Light" ? "bg-[#dadce0]/30" : "bg-[#dadce0]/[0.03]")
         }
       >
