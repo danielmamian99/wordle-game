@@ -21,8 +21,8 @@
     "src",
     "**/*.ts",
     "**/*.tsx",
-    "**/**/*.ts",
-    "**/**/*.tsx"
+    "**/**/**/*.ts",
+    "**/**/**/*.tsx",
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import { overTime } from "../store/slices/session";
 import { useAppSelector, useAppDispatch } from './redux';
 
-interface Props {
+interface UseTimerProps {
   minutes: number;
   seconds: number
   setMinutes: (minutes:number) => void;
   setSeconds: (seconds:number) => void;
 }
 
-export const useTimer = ({minutes, seconds, setMinutes, setSeconds} : Props) => {
+export const useTimer = ({minutes, seconds, setMinutes, setSeconds} : UseTimerProps) => {
   const dispatch =  useAppDispatch();
   const { gameStart } = useAppSelector((state) => state.game);
 

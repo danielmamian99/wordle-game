@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Modal from "react-modal";
 import { useTimer } from "../../hooks";
 
@@ -25,7 +25,7 @@ const customStyles: Modal.Styles = {
   },
 };
 
-Modal.setAppElement("#root");
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 export const StatsModal = () => {
   const dispatch = useAppDispatch();
@@ -38,20 +38,20 @@ export const StatsModal = () => {
   const startSeconds = 0;
   const [minutes, setMinutes] = useState(startMinutes);
   const [seconds, setSeconds] = useState(startSeconds);
-  
-  const calculateSeconds = seconds < 10 ? `0${seconds}` : seconds;
-  const time = `0${minutes}:${calculateSeconds}`;
 
   useTimer({ minutes, seconds, setMinutes, setSeconds });
 
-  const onCloseModal = () => {
+  const onCloseModal = useCallback(() => {
     if (!gameStart) {
       dispatch(onStartGame());
       setMinutes(startMinutes);
       setSeconds(startSeconds);
     }
     dispatch(onCloseStatsModal());
-  };
+  }, [gameStart]);
+
+  const calculateSeconds = seconds < 10 ? `0${seconds}` : seconds;
+  const time = `0${minutes}:${calculateSeconds}`;
 
   customStyles.content!.borderColor = mode === "Dark" ? "#939B9F" : "#000000";
   customStyles.content!.backgroundColor =

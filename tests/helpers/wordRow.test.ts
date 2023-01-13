@@ -1,4 +1,3 @@
-import { fireEvent, render, screen } from "@testing-library/react";
 import { equalsArrays } from "../../src/helpers";
 
 describe("wordRow", () => {

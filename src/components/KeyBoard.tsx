@@ -26,7 +26,7 @@ export const KeyBoard = () => {
   ]);
   
   const generalStyle =
-    "flex justify-center items-center uppercase text-lg rounded m-1 h-10 ";
+    "flex justify-center items-center uppercase text-xs sm:text-lg rounded m-1 h-8 md:h-10 ";
 
   const firtsRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const secondRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ñ"];
@@ -46,14 +46,14 @@ export const KeyBoard = () => {
     event.currentTarget.blur();
   };
   return (
-    <section className="flex justify-center mt-10">
+    <section className="flex justify-center mt-10 w-11/12 sm:w-auto">
       <div
         className={
-          "flex flex-col rounded-lg p-6 h-44 justify-center text-white " +
+          "flex flex-col rounded-lg p-6 h-44 justify-center text-white w-11/12 sm:w-auto " +
           (mode === "Light" ? "bg-[#dadce0]/30" : "bg-[#dadce0]/[0.03]")
         }
       >
-        <div className="flex font-medium ml-4">
+        <div className="flex font-medium ml-2 sm:ml-4">
           {firtsRow.map((letter, index) => (
             <button
               key={index}
@@ -77,7 +77,7 @@ export const KeyBoard = () => {
             </button>
           ))}
         </div>
-        <div className="flex font-medium ml-8">
+        <div className="flex font-medium ml-4 sm:ml-8">
           {secondRow.map((letter, index) => (
             <button
               key={index}

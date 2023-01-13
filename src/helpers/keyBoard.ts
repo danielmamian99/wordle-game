@@ -9,20 +9,22 @@ export const calculateCorrectWords = ({
   const resultCorrectWords: string[] = [];
   const resultValidWords: string[] = [];
   const resultInCorrectWords: string[] = [];
+
   inGameWords.forEach((wordsRow) => {
     wordsRow.forEach((word, index) => {
       if (currentWord.substring(index, index + 1) === word) {
         resultCorrectWords.push(word.toUpperCase());
       } else if (currentWord.includes(word)) {
         resultValidWords.push(word.toUpperCase());
-      }else{
+      } else {
         resultInCorrectWords.push(word.toUpperCase());
       }
     });
   });
+
   return {
     resultCorrectWords,
     resultValidWords,
     resultInCorrectWords,
-  }
+  };
 };

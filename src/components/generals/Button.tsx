@@ -1,13 +1,14 @@
+import { memo } from "react";
 
-interface props {
+export interface ButtonProps {
     handleClick: ()=>void;
     label: string;
     className?: string;
 }
 
-export const Button = ({className='', handleClick, label} : props) => {
+export const Button = memo(({className='', handleClick, label} : ButtonProps) => {
   return (
-    <div className={'flex justify-center ' + className}>
+    <div className={'flex justify-center ' + className} data-testid="button-container">
         <button
         onClick={handleClick}
         className="w-4/6 h-10 rounded font-bold text-white bg-[#6AAA64]"
@@ -17,4 +18,4 @@ export const Button = ({className='', handleClick, label} : props) => {
         </button>
   </div>
   )
-}
+})

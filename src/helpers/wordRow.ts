@@ -1,7 +1,7 @@
 /*
-* description: This function compares arrays of the same size
-* return: true if are equals, false if are differents
-*/
+ * description: This function compares arrays of the same size
+ * return: true if are equals, false if are differents
+ */
 export const equalsArrays = (array1: string[], array2: string[]): boolean => {
   let areEquals = true;
   array1.forEach((element: string, index: number) => {
@@ -12,3 +12,4 @@ export const equalsArrays = (array1: string[], array2: string[]): boolean => {
   });
   return areEquals;
 };
+
