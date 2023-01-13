@@ -35,7 +35,7 @@ export const Header = () => {
                 <button onClick={openStatsModal}>
                     <img alt="Marcador wordle game" className="h-9 w-10" src={`/images/header/${mode}/stats.svg`}></img>
                 </button>
-                <button onClick={changeMode}>
+                <button onClick={changeMode} data-testid="button-change-mode">
                     <img alt="Alternar modo wordle game" className="h-9 w-10" src={`/images/header/${mode}/switch.svg`}></img>
                 </button>
             </div>
