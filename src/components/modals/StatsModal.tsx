@@ -20,7 +20,6 @@ const customStyles: Modal.Styles = {
     height: "50%",
     display: "flex",
     flexDirection: "column",
-    padding: "40px",
     borderRadius: "15px",
   },
 };
@@ -66,34 +65,34 @@ export const StatsModal = () => {
       onRequestClose={onCloseModal}
       style={customStyles}
     >
-      <section className={mode === "Dark" ? "text-white bg-[#262B3C]" : ""}>
-        <article className="flex justify-center">
-          <p className="text-2xl font-bold"> Estadisticas </p>
+      <section className={'flex flex-col justify-between h-full sm:h-auto ' + (mode === "Dark" ? "text-white bg-[#262B3C]" : "")}>
+        <article className="flex justify-center mt-0 sm:mt-6">
+          <p className="text-lg sm:text-2xl font-bold"> Estadisticas </p>
         </article>
-        <section className="grid grid-cols-2 mt-10">
-          <article className="flex flex-col justify-center items-center">
-            <p className="font-bold"> {plays} </p>
+        <section className="grid grid-rows-2 sm:grid-rows-none sm:grid-cols-2 mt-4 sm:mt-10 text-sm sm:text-lg">
+          <article className="flex flex-row-reverse sm:flex-col justify-center items-center">
+            <p className="font-bold ml-2 sm:ml-0 text-lg sm:text-xl"> {plays} </p>
             <p> Jugadas </p>
           </article>
-          <article className="flex flex-col justify-center items-center">
-            <p className="font-bold text-xl"> {wins} </p>
+          <article className="flex flex-row-reverse sm:flex-col justify-center items-center">
+            <p className="font-bold ml-2 sm:ml-0 text-lg sm:text-xl"> {wins} </p>
             <p> Victorias </p>
           </article>
         </section>
 
         {hasLose && (
-          <article className="flex justify-center mt-8">
+          <article className="flex justify-center mt-4 sm:mt-8 text-sm sm:text-lg">
             <p>
               La palabra era <span className="font-bold">{currentWord}</span>
             </p>
           </article>
         )}
 
-        <article className="flex flex-col justify-center items-center mt-6">
+        <article className="flex flex-col justify-center items-center text-sm sm:text-lg mt-3 sm:mt-6">
           <p className=""> SIGUIENTE PALABRA </p>
           <p className="font-bold"> {time} </p>
         </article>
-        <Button className="mt-4" handleClick={onCloseModal} label="Aceptar" />
+        <Button className="mt-4 text-sm sm:text-lg" handleClick={onCloseModal} label="Aceptar" />
       </section>
     </Modal>
   );
