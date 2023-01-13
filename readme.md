@@ -1,5 +1,25 @@
 # Wordle Game
 
+Esta App es un wordle, con diseño responsive.
+Cuenta con 3 vistas:
+
+### Instrucciones:
+![Image text](public/images/readme/game/instrucciones.png)
+### Estadisticas, donde puedes ver las partidas jugadas, ganadas y tiempo restante (5 minutos por partida):
+![Image text](public/images/readme/game/estadisticas.png)
+### Pantalla de juego:
+![Image text](public/images/readme/game/juego.png)
+### Con el botón ? puedes abrir las instrucciones de nuevo
+![Image text](public/images/header/Light/how_to_play.svg)
+### Con este botón puedes abrir las estadisticas
+![Image text](public/images/header/Dark/stats.svg)
+### Con este switch puedes alternar la vista entre Dark y Light
+![Image text](public/images/header/Light/switch.svg)
+### Light Mode
+![Image text](public/images/readme/game/Light.png)
+### Dark Mode
+![Image text](public/images/readme/game/Dark.png)
+
 #### Link: https://jeferson-daniel-mamian-wordle-game.netlify.app/
 
 ### Esta creada con:

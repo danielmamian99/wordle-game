@@ -8,12 +8,14 @@ interface HandleCLickProps {
 }
 export const KeyBoard = () => {
   const { currentWord, inGameWords } = useAppSelector((state) => state.game);
-  const { mode } = useAppSelector((state) => state.ui);
+  const { mode, isHowToPlayModalOpen, isStatsModalOpen } = useAppSelector((state) => state.ui);
   const [correctWords, setCorrectWords] = useState<string[]>([]);
   const [inCorrectWords, setInCorrectWords] = useState<string[]>([]);
   const [validWords, setValidWords] = useState<string[]>([]);
   const { resultCorrectWords, resultValidWords, resultInCorrectWords } =
     calculateCorrectWords({ currentWord, inGameWords });
+
+    const currentMode = (mode === "Light" || isStatsModalOpen || isHowToPlayModalOpen) ? 'Light' : 'Dark';
 
   useEffect(() => {
     setCorrectWords([...resultCorrectWords]);
@@ -50,7 +52,7 @@ export const KeyBoard = () => {
       <div
         className={
           "flex flex-col rounded-lg p-2 sm:p-6 justify-center text-white w-full sm:w-auto " +
-          (mode === "Light" ? "bg-[#dadce0]/30" : "bg-[#dadce0]/[0.03]")
+          (currentMode === "Light" ? "bg-[#dadce0]/30" : "bg-[#dadce0]/[0.03]")
         }
       >
         <div className="flex font-medium ml-2 sm:ml-4">
@@ -66,7 +68,7 @@ export const KeyBoard = () => {
                   ? "bg-[#CEB02C]"
                   : inCorrectWords.find((word) => word === letter)
                   ? "bg-[#818181]"
-                  : mode === "Light"
+                  : currentMode === "Light"
                   ? "bg-[#D3D6DA] text-[#56575E]"
                   : "bg-[#565F7E]")
               }
@@ -90,7 +92,7 @@ export const KeyBoard = () => {
                   ? "bg-[#CEB02C]"
                   : inCorrectWords.find((word) => word === letter)
                   ? "bg-[#818181]"
-                  : mode === "Light"
+                  : currentMode === "Light"
                   ? "bg-[#D3D6DA] text-[#56575E]"
                   : "bg-[#565F7E]")
               }
@@ -114,7 +116,7 @@ export const KeyBoard = () => {
                 ? "bg-[#CEB02C]"
                 : inCorrectWords.find((word) => word === letter)
                 ? "bg-[#818181]"
-                : mode === "Light"
+                : currentMode === "Light"
                 ? "bg-[#D3D6DA] text-[#56575E]"
                 : "bg-[#565F7E]")
               }
@@ -123,7 +125,7 @@ export const KeyBoard = () => {
               {index < 8 ? (
                 letter
               ) : (
-                <img alt="Borrar caracter wordle game" src={`images/keyBoard/${mode}/backSpace.svg`}></img>
+                <img alt="Borrar caracter wordle game" src={`images/keyBoard/${currentMode}/backSpace.svg`}></img>
               )}
             </button>
           ))}
