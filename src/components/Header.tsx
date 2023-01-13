@@ -29,7 +29,7 @@ export const Header = () => {
                 </button>
             </figure>
             <article className="grid place-content-center justify-self-center">
-                <p className="text-2xl font-medium"> WORDLE </p>
+                <p className="text-xl sm:text-2xl font-medium"> WORDLE </p>
             </article>
             <div className="grid grid-cols-2 place-content-center justify-self-end mr-4">
                 <button onClick={openStatsModal}>
