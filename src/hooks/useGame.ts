@@ -11,12 +11,13 @@ export const useGame = () => {
   const dispatch = useAppDispatch();
   const { hasLose, hasWin, currentRow, allWords, gameStart , errorMessage } = useAppSelector((state) => state.game);
   const { timeIsOver } = useAppSelector((state) => state.session);
+  const { isHowToPlayModalOpen } = useAppSelector(state => state.ui);
 
   const isFirtsTime = !(
     localStorage.getItem("Firts-Time-In-The-Game") === "false"
   );
 
-  if(isFirtsTime){
+  if(isFirtsTime && !isHowToPlayModalOpen){
     localStorage.setItem("Firts-Time-In-The-Game", "false")
   }
   
