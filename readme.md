@@ -12,10 +12,12 @@ Cuenta con 3 vistas:
 ### Con el botón ? puedes abrir las instrucciones de nuevo
 ![Image text](public/images/header/Light/how_to_play.svg)
 ### Con este botón puedes abrir las estadisticas
-![Image text](public/images/header/Light/stats.svg)
+![Image text](public/images/header/Dark/stats.svg)
 ### Con este switch puedes alternar la vista entre Dark y Light
 ![Image text](public/images/header/Light/switch.svg)
+### Light Mode
 ![Image text](public/images/readme/game/Light.png)
+### Dark Mode
 ![Image text](public/images/readme/game/Dark.png)
 
 #### Link: https://jeferson-daniel-mamian-wordle-game.netlify.app/
