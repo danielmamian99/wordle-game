@@ -41,6 +41,8 @@ export const WordRow = ({ positionRow }: { positionRow:number }) => {
 
   const captureEvent = (event: KeyboardEvent) => {
     const charCode = event.key.charCodeAt(0);
+    console.log('event.key >>>', event.key);
+    console.log('charCode >>>', charCode);
     if (event.key.length > 1) {
       if (charCode === 66 && word.length > 0) {
         const copyWord = [...word];
@@ -52,7 +54,10 @@ export const WordRow = ({ positionRow }: { positionRow:number }) => {
         }
       }
     } else if (
-      ((charCode >= 97 && charCode <= 122) ||
+      (
+        (charCode === 241 && event.key ==='ñ') ||
+        (charCode === 209 && event.key ==='Ñ') ||
+        (charCode >= 97 && charCode <= 122) ||
         (charCode >= 65 && charCode <= 90)) &&
       word.length <= 4
     ) {
