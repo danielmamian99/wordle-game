@@ -26,7 +26,7 @@ export const KeyBoard = () => {
   ]);
   
   const generalStyle =
-    "flex justify-center items-center uppercase text-xs sm:text-lg rounded m-1 h-8 md:h-10 ";
+    "flex justify-center items-center uppercase text-xs sm:text-lg rounded m-1 h-8 sm:h-10 ";
 
   const firtsRow = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const secondRow = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ñ"];

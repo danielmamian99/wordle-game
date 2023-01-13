@@ -40,7 +40,7 @@ export const HowToPlayModal = () => {
     "flex justify-center font-bold my-2 " +
     (mode === "Dark" ? "" : "text-black");
 
-    const letterGeneralStyle = 'flex justify-center items-center uppercase text-lg md:text-2xl rounded m-1 w-6 md:w-14 h-6 md:h-14 ';
+    const letterGeneralStyle = 'flex justify-center items-center uppercase text-lg sm:text-2xl rounded m-1 w-6 sm:w-14 h-6 sm:h-14 ';
 
   const letterStyleMode =
   letterGeneralStyle +
@@ -91,7 +91,7 @@ export const HowToPlayModal = () => {
             )
           )}
         </div>
-        <p className="text-sm md:text-lg">
+        <p className="text-sm sm:text-lg">
           La letra <span className="font-bold">G</span> está en la palabra y en
           la posición correcta.
         </p>
@@ -106,7 +106,7 @@ export const HowToPlayModal = () => {
             )
           )}
         </div>
-        <p className="text-sm md:text-lg">
+        <p className="text-sm sm:text-lg">
           La letra <span className="font-bold">C</span> está en la palabra pero
           en la posición incorrecta.
         </p>
@@ -121,7 +121,7 @@ export const HowToPlayModal = () => {
             )
           )}
         </div>
-        <p className="text-sm md:text-lg">
+        <p className="text-sm sm:text-lg">
           La letra <span className="font-bold">O</span> no está en la palabra.
         </p>
         <p className="text-sm sm:text-lg mt-5 sm:mt-10">
