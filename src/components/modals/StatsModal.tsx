@@ -65,7 +65,7 @@ export const StatsModal = () => {
       onRequestClose={onCloseModal}
       style={customStyles}
     >
-      <section className={'flex flex-col justify-between h-full sm:h-auto ' + (mode === "Dark" ? "text-white bg-[#262B3C]" : "")}>
+      <section className={'flex flex-col justify-between h-full ' + (mode === "Dark" ? "text-white bg-[#262B3C]" : "")}>
         <article className="flex justify-center mt-0 sm:mt-6">
           <p className="text-lg sm:text-2xl font-bold"> Estadisticas </p>
         </article>

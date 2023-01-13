@@ -18,7 +18,7 @@ const customStyles: Modal.Styles = {
     height: "80%",
     display: "flex",
     flexDirection: "column",
-    padding: "40px",
+    // padding: "40px",
     borderRadius: "15px",
   },
 };
@@ -40,7 +40,7 @@ export const HowToPlayModal = () => {
     "flex justify-center font-bold my-2 " +
     (mode === "Dark" ? "" : "text-black");
 
-    const letterGeneralStyle = 'flex justify-center items-center uppercase text-2xl rounded m-1 w-14 h-14 ';
+    const letterGeneralStyle = 'flex justify-center items-center uppercase text-lg md:text-2xl rounded m-1 w-6 md:w-14 h-6 md:h-14 ';
 
   const letterStyleMode =
   letterGeneralStyle +
@@ -65,8 +65,8 @@ export const HowToPlayModal = () => {
       style={customStyles}
     >
       <section className={mode === "Dark" ? "text-white bg-[#262B3C]" : ""}>
-        <article className="flex flex-col">
-          <p className="text-2xl font-bold self-center">Cómo jugar</p>
+        <article className="flex flex-col text-sm sm:text-lg">
+          <p className="text-xl sm:text-2xl font-bold self-center">Cómo jugar</p>
           <br />
           <p>Adivina la palabra oculta en cinco intentos.</p>
           <br />
@@ -79,7 +79,7 @@ export const HowToPlayModal = () => {
           </p>
           <br />
         </article>
-        <p className="text-xl font-bold"> Ejemplos </p>
+        <p className="text-base sm:text-xl font-bold"> Ejemplos </p>
         <div className={rowStyle}>
           {cats.map((letter, index) =>
             index === 0 ? (
@@ -91,7 +91,7 @@ export const HowToPlayModal = () => {
             )
           )}
         </div>
-        <p>
+        <p className="text-sm md:text-lg">
           La letra <span className="font-bold">G</span> está en la palabra y en
           la posición correcta.
         </p>
@@ -106,7 +106,7 @@ export const HowToPlayModal = () => {
             )
           )}
         </div>
-        <p>
+        <p className="text-sm md:text-lg">
           La letra <span className="font-bold">C</span> está en la palabra pero
           en la posición incorrecta.
         </p>
@@ -121,17 +121,17 @@ export const HowToPlayModal = () => {
             )
           )}
         </div>
-        <p>
+        <p className="text-sm md:text-lg">
           La letra <span className="font-bold">O</span> no está en la palabra.
         </p>
-        <p className="mt-10">
+        <p className="text-sm sm:text-lg mt-5 sm:mt-10">
           Puede haber letras repetidas. Las pistas son independientes para cada
           letra.
         </p>
-        <article className="flex justify-center mt-10">
+        <article className="flex justify-center mt-5 sm:mt-10 text-sm sm:text-lg">
           <p>¡Una palabra nueva cada 5 minutos!</p>
         </article>
-        <Button className="mt-10" handleClick={onCloseModal} label="!JUGAR¡" />
+        <Button className="mt-10 text-sm sm:text-lg" handleClick={onCloseModal} label="!JUGAR¡" />
       </section>
     </Modal>
   );
