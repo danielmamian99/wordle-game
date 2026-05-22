@@ -23,7 +23,6 @@ export const WordleApp = () => {
         (mode === "Dark" ? `bg-[#262B3C] text-white` : "")
       }
     >
-      <h1>Deploy Test</h1>
       <div className="py-10 w-11/12 sm:w-auto">
         {!isLoading ? (
           <>
